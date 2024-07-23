@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 09 : DOM Manipulation</title>
+</head>
+<body>
+    <p id="changeByID">Change text by Id</p>
+    <p class="changeByClass">Change bgc by class</p>
+    <ul>
+        <li>One</li>
+        <li>Two</li>
+    </ul>
+    <span>Remove me from the DOM</span>
+    <img src="https://images.unsplash.com/photo-1721504483802-6503a4ba6eeb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMHx8fGVufDB8fHx8fA%3D%3D" alt="#">
+    <h5>Add and remove class to/from me</h5>
+
+    <button>Click me to change the text</button>
+    <p class="btnClick">This will change on button click</p>
+    <div style="height: 50px; width: max-content;" class="changeBorder"> border will change on mouse hover</div>
+</body>
+
+<script>
+    // Task 1 : Select an HTML element by its ID and change its text content.
+
+    document.querySelector('#changeByID').textContent = 'This is the changed text using ID'
+
+    // Task 2 : Select an HTML element by its class and change its background color.
+
+    document.querySelector('.changeByClass').style.backgroundColor = 'pink'
+
+    // Task 3 : Create a new div element with some text content and append it to the body.
+
+    let div = document.createElement('div')
+    div.textContent = 'This is a new div element'
+    document.body.appendChild(div)
+
+    // Task 4 : Create a new li element and add it to an existing ul list.
+
+    let li = document.createElement('li')
+    li.textContent = 'Three'
+    document.querySelector('ul').appendChild(li)
+
+    // Task 5 : Select an HTML element and remove it from the DOM.
+
+    document.body.removeChild(document.querySelector('span'))
+
+    // Task 6 : Remove the last child of a specific HTML element.
+
+    document.querySelector('li:last-child').remove()
+
+    // Task 7 : Select an HTML element and change one of its attributes (e.g., src of an img tag)
+
+    document.querySelector('img').src = 'https://images.unsplash.com/photo-1721313859415-706a15eecbed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D'
+
+    // Task 8 : Add and remove a CSS class to/from an HTML element.
+
+    let element = document.querySelector('h5')
+    element.setAttribute('class', 'toBeRemoved')
+    element.removeAttribute('class', 'toBeRemoved')
+
+    // Task 9 : Add a click event listner to a button that changes the text content of a paragraph.
+
+    document.querySelector('button').addEventListener('click', function() {
+        document.querySelector('.btnClick').textContent = "This is after button clicked"
+    })
+
+    // Task 10 : Add a mouseover event listner to an element that changes its border color.
+
+    document.querySelector('.changeBorder').addEventListener('mouseover', function() {
+        document.querySelector('.changeBorder').style.border = '2px solid red'
+    })
+
+</script>
+
+</html> 
