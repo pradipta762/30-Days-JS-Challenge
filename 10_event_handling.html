@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 : Event Handling</title>
+</head>
+<body>
+    
+    <p class="textChangeBtnClicked">This will change after button is clicked</p>
+    <button class="changePara">Chnage Paragraph Text</button>
+
+    <img class="visibilityToggle" style="visibility: visible;" src="https://images.unsplash.com/photo-1721241843448-af1c8ade1835?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1NXx8fGVufDB8fHx8fA%3D%3D">
+    
+    <div class="changeBgOnHover" style="height: 100px; width: 150px; background-color:yellow;"></div>
+
+    <input type="text" id="displaykeyDown">
+
+    <input type="text" id="displaykeyUp">
+
+    <p class="displayKeyUp"></p>
+
+    <form action="#">
+        <input type="text" name="name" id="name">
+        <input type="email">
+        <button>Submit</button>
+    </form>
+
+    <select name="price" id="price">
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="300">300</option>
+    </select>
+
+    <p class="displayOption"></p>
+
+    <ul>
+        <li>Mango</li>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Peach</li>
+        <li>Pomogranade</li>
+    </ul>
+
+    <div class="parent"></div>
+
+</body>
+
+<script>
+
+// Task 1 : Add a click event listner to a button that changes the text content of a paragraph.
+
+document.querySelector('.changePara').addEventListener('click', function() {
+    document.querySelector('.textChangeBtnClicked').textContent = 'Paragraph Text Changed After Button Clicked'
+})
+
+// Task 2 : Add a double-click event listener to an image that toggle its visiblity.
+
+const image = document.querySelector('.visibilityToggle')
+
+image.addEventListener('dblclick', function() {
+    image.style.visibility = 'hidden'
+})
+
+// Task 3 : Add a mouseover event listener to an element that changes its background color.
+
+document.querySelector('.changeBgOnHover').addEventListener('mouseover', function() {
+    document.querySelector('.changeBgOnHover').style.backgroundColor = 'orange'
+})
+
+// Task 4 : Add a mouseout event listener to an element that resets its background color.
+
+document.querySelector('.changeBgOnHover').addEventListener('mouseout', function() {
+    document.querySelector('.changeBgOnHover').style.backgroundColor = 'yellow'
+})
+
+// Task 5 : Add a keydown event listener to an input field that logs the key pressed to the console.
+
+const keyDownInput = document.querySelector('#displaykeyDown')
+keyDownInput.addEventListener('keydown', function(e) {
+    console.log(e.key)
+})
+
+// Task 6 : Add a keyup event listener to an input field that displays the current value in a paragraph.
+
+const keyUpInput = document.querySelector('#displaykeyUp')
+const displayText = document.querySelector('.displayKeyUp')
+
+keyUpInput.addEventListener('keydown', function(e) {
+    displayText.textContent += `${e.key}`
+})
+
+// Task 7 : Add a submit event listener to a form that prevents the default submission and logs the form data to the console.
+
+const form = document.querySelector('form')
+form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    console.log(form[0].value, form[1].value)
+})
+
+// Task 8 : Add a change event listener to a select dropdown that displays the selected value in a paragraph.
+
+const selectElement = document.querySelector('#price')
+const result = document.querySelector('.displayOption')
+
+selectElement.addEventListener('change', function(e) {
+    result.textContent = `You choose ${e.target.value}`
+})
+
+// Task 9 : Add a click evnet listener to a list that logs the text content of the clicked list item using event delegation.
+
+const ul = document.querySelector('ul')
+ul.addEventListener('click', function(event) {
+    if(event.target.tagName === 'LI') {
+        console.log(event.target.textContent)
+    }
+})
+
+// Task 10 : Add an event listener to a parent element that listens for events from dynamically added child elements.
+
+const div = document.querySelector('.parent')
+const button = document.createElement('button')
+button.appendChild(document.createTextNode('Click Me'))
+div.appendChild(button)
+
+div.addEventListener('click', function(event) {
+    if(event.target.tagName === 'BUTTON') {
+        event.target.style.backgroundColor = "red"
+    }
+})
+
+</script>
+
+</html>
